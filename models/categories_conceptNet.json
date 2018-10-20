@@ -1,0 +1,26 @@
+{
+    "Maths" : {
+        "keywords":["mathematics","maths","algebra","trigonometry","subtraction", "multiplication","division","calculus","calculation","statistics","numbers"]
+    },
+    "Natural Science":{
+        "keywords":["biological science","anthropology","animal biology","biology","bioscience","botany","ecology","environmental science","medicine","natural science","science of life","study of living things","zoology","physics","chemistry","climate change"]
+    },
+    "Social Sciences":{
+        "keywords":["social science", "history","social studies","geography","economics","accounting"]
+    }, 
+    "Languages":{
+        "keywords":["languages","language","english","chinese","french","spanish","german","chinese language"]
+    },
+    "Education and learning theories":{
+        "keywords":["educational resources","online learning","guidelines","practical learning","alternative education","education system","evolution"]
+    },
+    "Education inspiration and motivation":{
+        "keywords":["stem","careers","immigration","resources","practical learning"]
+    },
+    "School news":{
+        "keywords":["schools","university","glen eden intermediate school","tauranga girls college","rangitoto college","massey university","unitec","funding","pukehina school","school mergers","school closure","wellbeing","whanganui girls' college","mount maunganui college","whangarei boys' high School","new zealand curriculum","tertiary education","new zealand universities","violence","chapman college","bethlehem college","universities new zealand","middle school west auckland"]
+    },
+    "Curriculum news":{
+        "keywords":["ncea", "ilets","exams","nzqa"]
+    }
+}

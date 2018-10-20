@@ -1,0 +1,20 @@
+# 檔案名稱 .gitignore
+
+# 忽略 secret.yml 檔案
+# secret.yml
+
+# 忽略 config 目錄下的 database.yml 檔案
+config/database.yml
+
+# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
+/node_modules
+/python/stanford-ner
+/python/stanford-ner-2018-02-27
+/python/stanford-parser-full-2015-04-20
+
+
+# 忽略所有附檔名是 .tmp 的檔案
+*.tmp
+
+# 當然你要忽略自己也可以，只是通常不會這麼做
+# .gitignore
