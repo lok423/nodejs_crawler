@@ -5,6 +5,8 @@ var URL = require('url-parse');
 const util = require('util');
 const EventEmitter = require('events');
 const fs = require('fs');
+const dataService = require('../controllers/database.controller');
+
 
 
 //Functions have not used yet
@@ -177,13 +179,14 @@ $('.td-post-source-tags').find('li').each(function( index ) {
          console.log("category: ",category," updated url: ",article_url_list[0]);
          obj[category].url = article_url_list[0]; //add some data
          json = JSON.stringify(obj); //convert it back to json
-         fs.writeFile('./data/last_page.json', json, 'utf8'); // write it back
+        //  fs.writeFile('./data/last_page.json', json, 'utf8'); // write it back
          console.log("update url file");
        }else{
          console.log("no update url");
        }
-
   }});
+    dataService.updateLastScrapingUrl("educationcentral", category, article_url_list[0]);
+
   }
   if(article_array.length==0){
     return false;

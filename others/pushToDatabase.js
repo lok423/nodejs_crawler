@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const articleSchema = require('../models/articleSchema');
+
 const debug = require('debug')('app:dataService')
 // const Q = require('q');
 
@@ -67,6 +68,8 @@ function pushScrapingData(article){
         });
     
 }
+
+
 
 module.exports.loadJson = loadLocalJson;
 module.exports.pushScrapingData = pushScrapingData;

@@ -2,16 +2,17 @@ class Article {
 
 
 
-  constructor(category,title, subtitle, author, date, content, source, tags) {
+  constructor(precategory,title, description, author, date, content, source, tags,categorize) {
     //this.id = id;
-    this.category = category;
+    this.precategory = precategory;
     this.title = title;
-    this.subtitle = subtitle;
+    this.description = description;
     this.author = author;
     this.date = date;
     this.content = content;
     this.source = source;
     this.tags = tags;
+    this.categorize = categorize
   }
 }
 
