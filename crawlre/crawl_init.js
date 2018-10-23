@@ -36,7 +36,7 @@ function crawlinit() {
   const Future_URL = 'https://educationcentral.co.nz/category/future-focus/';
 
   function scheduleCronstyle() {
-    // schedule.scheduleJob('0 0 8 * * *', function(){
+    schedule.scheduleJob('0 0 8 * * *', function(){
     // schedule.scheduleJob('1-10 * * * * *', function(){
     console.log(`scheduleCronstyle:${new Date()}`);
     (async () => {
@@ -52,7 +52,7 @@ function crawlinit() {
       //   console.log(message);
       // });
     })();
-    // });
+    });
   }
 
   async function crawlEducationCentral() {

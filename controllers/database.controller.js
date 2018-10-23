@@ -5,6 +5,7 @@ const Q = require('q');
 
 const articleSchema = require('../models/articleSchema');
 const scrapingSchema = require('../models/scrapingSchema');
+const categorizedArticleSchema = require('../models/categorizedArticleSchema');
 
 
 
@@ -12,7 +13,7 @@ mongoose.connect('mongodb://heroku_m353r10c:l59avnkgmk6ugd64k5i1roe7sr@ds121262.
     useNewUrlParser: true
 }, function (err) {
     if (err) {
-        dubug(err);
+        debug(err);
     } else {
         debug('connected to the mongodb!');
     }
@@ -105,7 +106,60 @@ function getLastScrapingUrl(website,category){
     return deferred.promise;
 }
 
+function getScrapingData(category){
+    var deferred = Q.defer();
+    var query = { precategory:category };
+    articleSchema.find(query, function(err,docs){
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        if(docs){
+            deferred.resolve(docs);
+        }else{
+            deferred.resolve();
+        }
+    });
+    return deferred.promise;
+}
+
+function pushCategorizedData(article) {
+    let doc = new categorizedArticleSchema(article);
+    var query = categorizedArticleSchema.findOne({
+            title: article.title 
+        },
+        function (err, article) {
+            if (err) debug(err.name + ': ' + err.message);
+            if (article) {
+                // article has already existed
+                debug('Article "' + article.title + '" is already exist');
+            } else {
+                doc.save()
+                    .then(doc => {
+                        debug("Success to push article ",doc.title)
+                    })
+                    .catch(err => {
+                        debug(err)
+                    });
+            }
+        });
+}
+
+function updateScrapingData(refId){
+    var id = refId;
+    articleSchema.findByIdAndUpdate(id, {categorize:true},function(err,res){
+        if (err) debug(err.name + ': ' + err.message);
+        if(res){
+            debug("Update to the raw data has been edited");
+        }else{
+            debug("cannot find article");
+        }
+    })
+    
+}
+
+
 module.exports.pushScrapingData = pushScrapingData;
 module.exports.updateArticleModel = updateArticleModel;
 module.exports.updateLastScrapingUrl = updateLastScrapingUrl;
 module.exports.getLastScrapingUrl = getLastScrapingUrl;
+module.exports.getScrapingData = getScrapingData;
+module.exports.pushCategorizedData = pushCategorizedData;
+module.exports.updateScrapingData = updateScrapingData;
