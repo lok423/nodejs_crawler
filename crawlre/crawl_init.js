@@ -18,14 +18,14 @@ const options = {
 
 
 function crawlinit() {
-  console.time('read file');
-  const file = fs.readFileSync('./data/last_page.json', 'utf8');
-  fs.readFile('./data/articles.json', (err, data) => {
-    article_content = JSON.parse(data);
-    let total = article_content.length;
-    debug("total article",total);
-  });
-  console.timeEnd('read file');
+  // console.time('read file');
+  // const file = fs.readFileSync('./data/last_page.json', 'utf8');
+  // fs.readFile('./data/articles.json', (err, data) => {
+  //   article_content = JSON.parse(data);
+  //   let total = article_content.length;
+  //   debug("total article",total);
+  // });
+  // console.timeEnd('read file');
 
 
   const News_URL = 'https://educationcentral.co.nz/category/news/';
@@ -40,9 +40,9 @@ function crawlinit() {
     // schedule.scheduleJob('1-10 * * * * *', function(){
     console.log(`scheduleCronstyle:${new Date()}`);
     (async () => {
-      const last_url = JSON.parse(file);
+      // const last_url = JSON.parse(file);
       console.log("start running web crawler");
-      await crawlEducationCentral(last_url);
+      await crawlEducationCentral();
       // PythonShell.run('./python/test.py', null, function (err, data) {
       //     if (err) console.log(err);
       //     //console.log(data.toString())
@@ -55,14 +55,14 @@ function crawlinit() {
     // });
   }
 
-  async function crawlEducationCentral(last_url) {
+  async function crawlEducationCentral() {
     console.time('crawl');
-    const news = Crawlre.execute('news', News_URL, last_url);
-    const features = Crawlre.execute('features', Features_URL, last_url);
-    const opinion = Crawlre.execute('opinion', Opinion_URL, last_url);
-    const teaching = Crawlre.execute('teaching', Teaching_And_Learning_URL, last_url);
-    const sectors = Crawlre.execute('sectors', Sectors_URL, last_url);
-    const future = Crawlre.execute('future', Future_URL, last_url);
+    const news = Crawlre.execute('news', News_URL);
+    const features = Crawlre.execute('features', Features_URL);
+    const opinion = Crawlre.execute('opinion', Opinion_URL);
+    const teaching = Crawlre.execute('teaching', Teaching_And_Learning_URL);
+    const sectors = Crawlre.execute('sectors', Sectors_URL);
+    const future = Crawlre.execute('future', Future_URL);
     await Promise.all([news, features, opinion, teaching, sectors, future]).then((values) => {
       // console.log(values);
       console.timeEnd('crawl');

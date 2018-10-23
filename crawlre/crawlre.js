@@ -6,6 +6,7 @@ const util = require('util');
 const EventEmitter = require('events');
 const fs = require('fs');
 const dataService = require('../controllers/database.controller');
+const debug = require('debug')('app:crawlerService');
 
 
 
@@ -25,20 +26,26 @@ const dataService = require('../controllers/database.controller');
 
 module.exports.execute = execute;
 
-async function execute(_category, _url,last_url) {
+async function execute(_category, _url) {
 
   var category = _category;
-  var last_content = last_url;
+  
   var url = _url;
   var pagesVisited = {};
   var numPagesVisited = 0;
   var pagesToVisit = [];
   var article_array = [];
-  var a;
   var no_more_article = false;
   //const MAX_PAGES_TO_VISIT = 10;
   var article_url_list = [];
   pagesToVisit.push(url);
+  var last_page_url = await dataService.getLastScrapingUrl("educationcentral",category)
+                        .then(function(last_page){
+                          if(last_page){
+                            debug("The ",category, " last page url is: ",last_page.last_visited_url);
+                            return last_page.last_visited_url;
+                          }
+                        })
 
 
   async function crawl(pages) {
@@ -97,7 +104,7 @@ async function execute(_category, _url,last_url) {
       var highlight = $('.td_block_inner').first().children();
       highlight.find('a').each(function(i, item) {
         var href = $(this).attr('href');
-        if(href == last_content[category].url){
+        if(href == last_page_url){
           console.log('no new article');
           no_more_article = true;
           return false;
@@ -112,7 +119,7 @@ async function execute(_category, _url,last_url) {
         var main_content = $('.td-ss-main-content').children(".td_module_11").each(function(index){
           //console.log( index + ": " + $( this ).find('.td-module-thumb > a').attr('href') );
           var href = $( this ).find('.td-module-thumb > a').attr('href');
-          if(href == last_content[category].url){
+          if(href == last_page_url){
             console.log('no new article');
             no_more_article = true;
             return false;
@@ -162,7 +169,6 @@ $('.td-post-source-tags').find('li').each(function( index ) {
       resolve('ok');
     });
   }
-
 
 
   var result = await crawl(pagesToVisit);

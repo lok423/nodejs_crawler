@@ -19,7 +19,7 @@ mongoose.connect('mongodb://heroku_m353r10c:l59avnkgmk6ugd64k5i1roe7sr@ds121262.
 
 
 function loadLocalJson() {
-    const article_file = fs.readFileSync('./data/articles1.json', 'utf8');
+    const article_file = fs.readFileSync('./data/articles.json', 'utf8');
     // console.log("is empty?", article_file);
     const article_content = JSON.parse(article_file);
     // var id = 0;

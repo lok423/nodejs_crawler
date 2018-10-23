@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const debug = require('debug')('app:databaseController');
+const Q = require('q');
 
 const articleSchema = require('../models/articleSchema');
 const scrapingSchema = require('../models/scrapingSchema');
@@ -19,7 +20,6 @@ mongoose.connect('mongodb://heroku_m353r10c:l59avnkgmk6ugd64k5i1roe7sr@ds121262.
 
 
 function pushScrapingData(article) {
-    debug(article);
     let doc = new articleSchema(article);
     var query = articleSchema.findOne({
             title: article.title
@@ -32,7 +32,7 @@ function pushScrapingData(article) {
             } else {
                 doc.save()
                     .then(doc => {
-                        debug(doc)
+                        debug("Success to push article ",doc.title)
                     })
                     .catch(err => {
                         debug(err)
@@ -80,7 +80,7 @@ function updateLastScrapingUrl(website,category,newUrl){
         else{
             data.save()
                 .then(doc => {
-                    debug(doc)
+                    debug("Success to update new url on ", category,"to ", newUrl)
                 })
                 .catch(err => {
                     debug(err)
@@ -89,6 +89,23 @@ function updateLastScrapingUrl(website,category,newUrl){
     });
     }
 
+
+function getLastScrapingUrl(website,category){
+    var deferred = Q.defer();
+    var query = { website: website, category:category };
+    scrapingSchema.findOne(query, function(err,doc){
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        if(doc){
+            deferred.resolve(doc);
+        }else{
+            deferred.resolve();
+        }
+        
+    });
+    return deferred.promise;
+}
+
 module.exports.pushScrapingData = pushScrapingData;
 module.exports.updateArticleModel = updateArticleModel;
 module.exports.updateLastScrapingUrl = updateLastScrapingUrl;
+module.exports.getLastScrapingUrl = getLastScrapingUrl;
