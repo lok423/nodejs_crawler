@@ -108,7 +108,7 @@ function getLastScrapingUrl(website,category){
 
 function getScrapingData(category){
     var deferred = Q.defer();
-    var query = { precategory:category };
+    var query = { precategory:category, categorize:false };
     articleSchema.find(query, function(err,docs){
         if (err) deferred.reject(err.name + ': ' + err.message);
         if(docs){

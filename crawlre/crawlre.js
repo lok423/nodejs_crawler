@@ -174,23 +174,23 @@ $('.td-post-source-tags').find('li').each(function( index ) {
   var result = await crawl(pagesToVisit);
   console.log(category, article_url_list);
   if(article_url_list.length!=0){
-    fs.readFile('./data/last_page.json', 'utf8', function readFileCallback(err, data){
-      if (err){
-          console.log(err);
-      } else {
-       obj = JSON.parse(data); //now it an object
-       console.log(obj);
-       if(obj[category].url != article_url_list[0]){
-         console.log("category: ",category," old url: ",obj[category].url);
-         console.log("category: ",category," updated url: ",article_url_list[0]);
-         obj[category].url = article_url_list[0]; //add some data
-         json = JSON.stringify(obj); //convert it back to json
-        //  fs.writeFile('./data/last_page.json', json, 'utf8'); // write it back
-         console.log("update url file");
-       }else{
-         console.log("no update url");
-       }
-  }});
+  //   fs.readFile('./data/last_page.json', 'utf8', function readFileCallback(err, data){
+  //     if (err){
+  //         console.log(err);
+  //     } else {
+  //      obj = JSON.parse(data); //now it an object
+  //      console.log(obj);
+  //      if(obj[category].url != article_url_list[0]){
+  //        console.log("category: ",category," old url: ",obj[category].url);
+  //        console.log("category: ",category," updated url: ",article_url_list[0]);
+  //        obj[category].url = article_url_list[0]; //add some data
+  //        json = JSON.stringify(obj); //convert it back to json
+  //       //  fs.writeFile('./data/last_page.json', json, 'utf8'); // write it back
+  //        console.log("update url file");
+  //      }else{
+  //        console.log("no update url");
+  //      }
+  // }});
     dataService.updateLastScrapingUrl("educationcentral", category, article_url_list[0]);
 
   }

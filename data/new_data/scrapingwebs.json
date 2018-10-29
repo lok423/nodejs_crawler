@@ -1,0 +1,73 @@
+[{
+	"_id": {
+		"$oid": "5bcc5ae2ca8363e4f2672084"
+	},
+	"website": "educationcentral",
+	"category": "opinion",
+	"last_visited_url": "https://educationcentral.co.nz/opinion-sam-oldham-teach-first-nz-expanding-at-student-expense/",
+	"update_at": {
+		"$date": "2018-10-23T00:00:27.818Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5bcc5ae3ca8363e4f2672085"
+	},
+	"website": "educationcentral",
+	"category": "features",
+	"last_visited_url": "https://educationcentral.co.nz/nz-education-becoming-more-equal-as-rich-students-slip-more-than-poor-students/",
+	"update_at": {
+		"$date": "2018-10-23T21:11:14.851Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5bce631070abbcf82d8517a7"
+	},
+	"website": "educationcentral",
+	"category": "news",
+	"last_visited_url": "https://educationcentral.co.nz/teachers-may-get-immigration-fast-track/",
+	"update_at": {
+		"$date": "2018-10-22T23:53:52.291Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5bce631070abbcf82d8517a8"
+	},
+	"website": "educationcentral",
+	"category": "teaching",
+	"last_visited_url": "https://educationcentral.co.nz/new-resources-released-to-give-kids-a-head-start-on-health/",
+	"update_at": {
+		"$date": "2018-10-23T21:48:55.312Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5bce631070abbcf82d8517a9"
+	},
+	"website": "educationcentral",
+	"category": "sectors",
+	"last_visited_url": "https://educationcentral.co.nz/mind-the-gap-intermediates-versus-middle-schools/",
+	"update_at": {
+		"$date": "2018-10-23T21:11:15.968Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5bce631070abbcf82d8517aa"
+	},
+	"website": "educationcentral",
+	"category": "future",
+	"last_visited_url": "https://educationcentral.co.nz/smooth-transitions/",
+	"update_at": {
+		"$date": "2018-10-22T23:53:52.298Z"
+	},
+	"__v": 0
+}]
+

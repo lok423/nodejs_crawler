@@ -67,27 +67,27 @@ function crawlinit() {
       // console.log(values);
       console.timeEnd('crawl');
       console.log('processing data');
-      const article_file = fs.readFileSync('./data/articles.json', 'utf8');
+      // const article_file = fs.readFileSync('./data/articles.json', 'utf8');
       // console.log("is empty?", article_file);
-      if (article_file === '') {
-        const data = JSON.stringify(values);
-        fs.writeFileSync('./data/articles.json', data);
-      } else {
-        const article_content = JSON.parse(article_file);
+      // if (article_file === '') {
+        // const data = JSON.stringify(values);
+        // fs.writeFileSync('./data/articles.json', data);
+      // } else {
+        // const article_content = JSON.parse(article_file);
         for (let i = 0; i < values.length; i ++) {
           if (values[i]) {
             console.log('push index: ', i, ', ', values[i].length, 'articles');
             for (let j = 0; j < values[i].length; j ++) {
               var article =values[i][j];
               article.categorize = false;
-              article_content.push(article);
+              // article_content.push(article);
               dataService.pushScrapingData(article);
             }
           }
         }
-        const data = JSON.stringify(article_content);
+        // const data = JSON.stringify(article_content);
         // fs.writeFileSync('./data/articles.json', data);
-      }
+      // }
     });
     console.log('finished processing');
     return new Promise(((resolve) => {

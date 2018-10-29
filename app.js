@@ -29,7 +29,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/api/preparedata',require('./controllers/preparedata.controller'));
+// app.use('/api/preparedata',require('./controllers/preparedata.controller'));
+// var database = require('./controllers/local.database.controller');
 const port = process.env.PORT || 3000;
 
 const server = app.listen(port, () => {
